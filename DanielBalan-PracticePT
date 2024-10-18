@@ -3,9 +3,17 @@ def introduction():
     print("Your goal is to explore the maze and kill the final boss, encountering items and enemies along the way.")
     print("Good luck and enjoy this adventure.")
     room1()
-
+   
+health = 100
+inventory = 100
 def show_status(health, inventory):
-    
+    print("Health: "+ str(health))
+    print("Inventory: "+ str(inventory))
+
+def check_health():
+    print(health)
+    if health <= 0:
+        print("You ran out of health. Game Over!")
 
 def room1():
     print("The first room you enter is dark and gloomy with a door in front of you.")
@@ -26,10 +34,20 @@ def room2():
     elif action == 'explore':
         print("As you explore the room, a goblin suddenly appears.")
         enemy_encounter()
+        room2()
     elif action == 'go to the mushrooms':
         print("You go to the mushrooms and see two mushrooms: a red one and a purple one")
         action = input("Which mushroom do you want?(type 'red' or 'purple')")
-        if
+        if action == 'red':
+            print("You ate the red mushroom and feel well. Health: +10.")
+            health += 10
+            check_health()
+            room2()
+        elif action == 'purple':
+            print("You ate the purple mushroom and feel poison in your stomach. Health: -20.")
+            health -= 20
+            check_health()
+            room2()
 
 def room3():
     print("The third room is bright yellow with three doors in front of you")
@@ -40,11 +58,29 @@ def room3():
         room4()
     elif action == 'middle door':
         print("You enter the middle door and fall into a pit of lava.")
-        health
+        health -= 100
     elif action == 'right door':
         print("You enter the right door and hundreds of arrows shoot towards you")
         print("Only one scrapes you and you make it out alive.")
         health
         room4()
 
-    
+def room4():
+    print("The fourth room you enter is massive. You are standing on a ledge overlooking a floor of lava.")
+    print("There are tracks above it and a minecart in front of you.")
+    print("However, there is a lava golem righ behind you, so you must make a decision.")
+    action = input("What do you want to do? (type 'ride the minecart' or 'fight the golem')")
+    if action == 'ride the minecart':
+        print("You take the minecart. As you ride it, the lava starts to fly everywhere, barely missing you.")
+        print("Soon enough, you see the final room,where something is waiting for you.")
+        room5()
+    elif action == 'fight the golem':
+        enemy_encounter()
+        room4()
+
+    def room5():
+        print("Finally, you arrive in the final room. There a large, shadowy figure stands wearing a black cloak and guarding a door behind him.")
+        print("He says, 'In order to leave, you must defeat me.")
+        action = input("Do you accept this challenge? (type 'yes' or 'no')")
+
+introduction()
